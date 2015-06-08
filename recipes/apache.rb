@@ -28,12 +28,6 @@ web_app "coldfusion" do
   template "coldfusion-site.conf.erb"
 end
 
-# Link httpd.conf
-link "#{node['apache']['dir']}/conf.d/coldfusion-httpd.conf" do
-  to "#{node['apache']['dir']}/httpd.conf"
-  notifies :restart, "service[apache2]", :delayed
-end
-
 # Make sure CF is running
 execute "start_cf_for_coldfusion902_wsconfig" do
   command "/bin/true"
