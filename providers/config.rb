@@ -83,7 +83,7 @@ def make_api_call(msg)
   hr = http_request "post_config" do
     action :post
     url "http://#{node['ipaddress']}:8500/CFIDE/administrator/configmanager/api/index.cfm"
-    message msg
+    message URI.encode_www_form(msg)
     headers({"AUTHORIZATION" => "Basic #{Base64.encode64("admin:#{node['cf902']['admin_pw']}")}"})
   end
 
