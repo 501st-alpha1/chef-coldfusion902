@@ -34,6 +34,11 @@ execute "start_cf_for_coldfusion902_wsconfig" do
   notifies :start, "service[coldfusion]", :immediately
 end
 
+execute "bug workaround" do
+  command "echo 'Include /etc/apache2/mods-enabled/*' >> /etc/apache2/apache2.conf"
+  action :run
+end
+
 # Run wsconfig
 execute "wsconfig" do
   command "#{node['cf902']['install_path']}/runtime/bin/wsconfig -server coldfusion -ws Apache -dir #{node['apache']['dir']} -bin #{node['apache']['binary']} -script /usr/sbin/apache2ctl -coldfusion -v"
