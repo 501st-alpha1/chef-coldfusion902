@@ -81,13 +81,13 @@ def make_api_call(msg)
 
   # Make API call
   hr = http_request "post_config" do
-    action :nothing
+    action :post
     url "http://#{node['ipaddress']}:8500/CFIDE/administrator/configmanager/api/index.cfm"
     message msg
     headers({"AUTHORIZATION" => "Basic #{Base64.encode64("admin:#{node['cf902']['admin_pw']}")}"})
   end
 
-  hr.run_action(:post)
+  #hr.run_action(:post)
 
   # Get config state after attempted update
   after = Dir.glob("#{node['cf902']['install_path']}/lib/neo-*.xml").map { |filename| checksum(filename) }
