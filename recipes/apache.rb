@@ -39,6 +39,11 @@ execute "bug workaround" do
   action :run
 end
 
+execute "bug workaround" do
+  command "echo 'Include /etc/apache2/httpd.conf' >> /etc/apache2/apache2.conf"
+  action :run
+end
+
 # Run wsconfig
 execute "wsconfig" do
   command "#{node['cf902']['install_path']}/runtime/bin/wsconfig -server coldfusion -ws Apache -dir #{node['apache']['dir']} -bin #{node['apache']['binary']} -script /usr/sbin/apache2ctl -coldfusion -v"
