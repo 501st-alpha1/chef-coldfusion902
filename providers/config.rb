@@ -52,23 +52,25 @@ def initialize(*args)
 end
 
 action :set do
-  config = { "#{new_resource.component}" => { "#{new_resource.property}" => [ new_resource.args ] } } 
-  if make_api_call(config) 
-    new_resource.updated_by_last_action(true)
-    Chef::Log.info("Updated ColdFusion #{new_resource.component} configuration.")
-  else
-    Chef::Log.info("No ColdFusion configuration changes made.")
-  end 
+  # FIXME
+  # config = { "#{new_resource.component}" => { "#{new_resource.property}" => [ new_resource.args ] } } 
+  # if make_api_call(config) 
+  #   new_resource.updated_by_last_action(true)
+  #   Chef::Log.info("Updated ColdFusion #{new_resource.component} configuration.")
+  # else
+  #   Chef::Log.info("No ColdFusion configuration changes made.")
+  # end 
 end
 
 action :bulk_set do
-  config = new_resource.config 
-  if make_api_call(config)
-    new_resource.updated_by_last_action(true)
-    Chef::Log.info("Updated ColdFusion configuration.")
-  else
-    Chef::Log.info("No ColdFusion configuration changes made.")
-  end
+  # FIXME
+  # config = new_resource.config 
+  # if make_api_call(config)
+  #   new_resource.updated_by_last_action(true)
+  #   Chef::Log.info("Updated ColdFusion configuration.")
+  # else
+  #   Chef::Log.info("No ColdFusion configuration changes made.")
+  # end
 end
 
 def make_api_call(msg)
